@@ -4,7 +4,7 @@ import Task from './Task';
 const Home = () => {
 	const [list, setList] = useState([{id: 1, task: 'Wash my hands'},{id: 2, task: 'Wash my card'}]);
 	const [ inputValue, setInputValue ] = useState('');
-	const deleteItem = (id) => {
+	function deleteItem (id) {
 		console.log(id);
 		let newList = list; 
 		newList = newList.filter((task)=> task.id !== id); 
@@ -12,7 +12,6 @@ const Home = () => {
 		
 	}
 	const ToDoList = list.map((item)=> <Task title={item.task} onClick ={deleteItem} key={item.id} id={item.id}/>)
-
 
 	return (
 		<div className="container-list">
