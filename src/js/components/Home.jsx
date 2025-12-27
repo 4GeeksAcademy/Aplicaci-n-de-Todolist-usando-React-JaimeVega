@@ -4,6 +4,16 @@ import Task from './Task';
 const Home = () => {
 	const [list, setList] = useState([{id: 1, task: 'Wash my hands'},{id: 2, task: 'Wash my card'}]);
 	const [ inputValue, setInputValue ] = useState('');
+	function onClick (e){
+		e.preventDefault();
+						let newList = [...list];
+						let position = newList.length;
+						let inputValueClean = inputValue.trim().replace(/\s+/g, " ");
+						if (inputValueClean != '') {
+							newList[position] = {id: position+1, task: inputValueClean}
+							setList(newList);
+							setInputValue('');
+	}}
 	function deleteItem (id) {
 		let newList = [...list]; 
 		newList = newList.filter((task)=> task.id !== id); 
@@ -16,18 +26,7 @@ const Home = () => {
 		<div className="container-list">
 			<h1>TO DO LIST</h1>
 			<div className="list">
-				<form onSubmit={(e) => {
-						e.preventDefault();
-						let newList = [...list];
-						let position = newList.length;
-						let inputValueClean = inputValue.trim().replace(/\s+/g, " ");
-						if (inputValueClean != '') {
-							newList[position] = {id: position+1, task: inputValueClean}
-							setList(newList);
-							setInputValue('');
-						}
-						
-					}}>
+				<form onSubmit={onClick}>
 					<input type="text" placeholder='What needs to be done?' 
 					onChange={(e)=> {
 						setInputValue(e.target.value);						
