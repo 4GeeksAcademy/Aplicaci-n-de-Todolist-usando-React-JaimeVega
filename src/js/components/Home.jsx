@@ -20,13 +20,17 @@ const Home = () => {
 						e.preventDefault();
 						let newList = [...list];
 						let position = newList.length;
-						newList[position] = {id: position+1, task: inputValue}
-						setList(newList);
-						setInputValue('');
+						let inputValueClean = inputValue.trim().replace(/\s+/g, " ");
+						if (inputValueClean != '') {
+							newList[position] = {id: position+1, task: inputValueClean}
+							setList(newList);
+							setInputValue('');
+						}
+						
 					}}>
 					<input type="text" placeholder='What needs to be done?' 
 					onChange={(e)=> {
-						setInputValue(e.target.value);
+						setInputValue(e.target.value);						
 						}}
 					value={inputValue}
 					/>
