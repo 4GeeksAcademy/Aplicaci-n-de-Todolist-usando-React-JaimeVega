@@ -6,13 +6,13 @@ const Home = () => {
 	const [ inputValue, setInputValue ] = useState('');
 	function onClick (e){
 		e.preventDefault();
-						let newList = [...list];
-						let position = newList.length;
-						let inputValueClean = inputValue.trim().replace(/\s+/g, " ");
-						if (inputValueClean != '') {
-							newList[position] = {id: position+1, task: inputValueClean}
-							setList(newList);
-							setInputValue('');
+		let newList = [...list];
+		let position = newList.length;
+		let inputValueClean = inputValue.trim().replace(/\s+/g, " ");
+		if (inputValueClean != '') {
+			newList[position] = {id: position+1, task: inputValueClean}
+			setList(newList);
+			setInputValue('');
 	}}
 	function deleteItem (id) {
 		let newList = [...list]; 
