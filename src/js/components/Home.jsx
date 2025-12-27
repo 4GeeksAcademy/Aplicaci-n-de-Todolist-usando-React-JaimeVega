@@ -5,8 +5,7 @@ const Home = () => {
 	const [list, setList] = useState([{id: 1, task: 'Wash my hands'},{id: 2, task: 'Wash my card'}]);
 	const [ inputValue, setInputValue ] = useState('');
 	function deleteItem (id) {
-		console.log(id);
-		let newList = list; 
+		let newList = [...list]; 
 		newList = newList.filter((task)=> task.id !== id); 
 		setList(newList);
 		
@@ -19,17 +18,15 @@ const Home = () => {
 			<div className="list">
 				<form onSubmit={(e) => {
 						e.preventDefault();
-						let newList = list;
-						let position = list.length;
+						let newList = [...list];
+						let position = newList.length;
 						newList[position] = {id: position+1, task: inputValue}
-						console.log(newList);
 						setList(newList);
-						setInputValue('')
+						setInputValue('');
 					}}>
 					<input type="text" placeholder='What needs to be done?' 
 					onChange={(e)=> {
-						console.log(e.target.value);
-						setInputValue(e.target.value)
+						setInputValue(e.target.value);
 						}}
 					value={inputValue}
 					/>
